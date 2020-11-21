@@ -1,7 +1,8 @@
 import sys
+from utils import bcolors
 
 
-class Config(object):
+class ConfigParser(object):
     CONFIG_PATH = 'config.properties'
 
     def __init__(self, path=None):
@@ -9,7 +10,7 @@ class Config(object):
             self.CONFIG_PATH = path
 
     def read_file(self):
-        print 'loading configs'
+        print bcolors.OKCYAN + 'loading configs' + bcolors.ENDC
         filename = open(self.CONFIG_PATH)
         lines = filename.readlines()
         configs = {}
@@ -27,16 +28,16 @@ class Config(object):
             configs = self.read_file()
         except Exception, e:
             print e
-            print 'ERROR: The config.properties file is invalid'
+            print bcolors.FAIL + 'ERROR: The config.properties file is invalid' + bcolors.ENDC
             sys.exit(1)
     
         if not configs:
-            print 'ERROR: Configs can not be empty'
+            print bcolors.FAIL + 'ERROR: Configs can not be empty' + bcolors.ENDC
             sys.exit(1)
 
-        print 'configs loaded succesful'
+        print bcolors.OKGREEN + 'configs loaded succesful' + bcolors.ENDC
 
         for k, v in configs.iteritems():
-            print k, '=', v
+            print bcolors.WARNING + '  ' + k + '=' + v + bcolors.ENDC
 
         return configs
