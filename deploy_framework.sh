@@ -13,4 +13,5 @@ echo "WARNING: Prior to running this command make sure you've ran:" ;
 echo "sudo yum update" ;
 echo ;
 
-python tests/test_config_parser.py ;
+#python tests/test_config_parser.py ;
+python load_configs.py ;
