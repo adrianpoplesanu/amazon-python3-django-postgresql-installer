@@ -1,3 +1,4 @@
+#!/bin/bash
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 LIGHT_PURPLE='\033[1;35m'
@@ -25,3 +26,18 @@ echo "Installing gcc openssl-devel bzip2-devel libffi-devel" ;
 sudo yum install gcc openssl-devel bzip2-devel libffi-devel
 
 echo -e "${GREEN}gcc openssl-devel bzip2-devel libffi-devel installed!${NC}" ;
+
+echo "Installing PostgreSQL" ;
+
+sh ./postgres_setup.sh
+
+echo "PostgreSQL setup done" ;
+echo "Installing..." ;
+
+sudo yum makecache
+
+sudo yum install postgresql12 postgresql12-server
+
+sudo /usr/pgsql-12/bin/postgresql-12-setup initdb
+
+echo -e "${GREEN}PostgreSQL installed!${NC}" ;
