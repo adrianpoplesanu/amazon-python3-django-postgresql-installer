@@ -4,6 +4,9 @@ GREEN='\033[0;32m'
 LIGHT_PURPLE='\033[1;35m'
 NC='\033[0m' # No Color
 
+INSTALATION_DIRECTORY=$(pwd)
+INSTALATION_USER=$(whoami)
+
 echo -e "${LIGHT_PURPLE}    _      _     _                  ${NC}";
 echo -e "${LIGHT_PURPLE}   /_\  __| |_ _(_)__ _ _ _ _  _ ___${NC}";
 echo -e "${LIGHT_PURPLE}  / _ \/ _\` | '_| / _\` | ' \ || (_-<${NC}";
@@ -38,6 +41,34 @@ sudo yum makecache
 
 sudo yum install postgresql12 postgresql12-server
 
-sudo /usr/pgsql-12/bin/postgresql-12-setup initdb
+# sudo /usr/pgsql-12/bin/postgresql-12-setup initdb
 
 echo -e "${GREEN}PostgreSQL installed!${NC}" ;
+
+echo "Installing Python 3.9"
+
+sh ./python_installation.sh
+
+echo "Creating PostgresSQL Database and Running server..."
+
+whoami
+cd $INSTALATION_DIRECTORY
+sh ./postgres_start.sh
+
+echo -e "${GREEN}PostgreSQL server is started and deployed!${NC}"
+
+echo "Creating Django application"
+
+cd ~
+python3.9 -m venv sandbox
+. sandbox/bin/activate
+which python
+python -m pip install Django
+pip install psycopg2-binary
+cd sandbox
+mkdir src
+cd src
+django-admin startproject my_site
+deactivate
+
+echo "Instalation finished."
