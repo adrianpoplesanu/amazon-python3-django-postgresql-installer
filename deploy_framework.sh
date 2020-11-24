@@ -71,4 +71,11 @@ cd src
 django-admin startproject my_site
 deactivate
 
+#TODO: change settings.py from django installation to use postgres and accepted_hosts
+#sed -i "s/$search/$replace/" ~/sandbox/src/my_site/my_site/settings.py
+#sed -i "s/$search/$replace/" ~/sandbox/src/my_site/my_site/settings.py
+#TODO: update the postgresql ident to md5 connection configuration
+#this needs to be run with the postgres user
+#sed -i "s/$search/$replace/" ~/bla bla bla/pb_hga.conf
+
 echo "Instalation finished."

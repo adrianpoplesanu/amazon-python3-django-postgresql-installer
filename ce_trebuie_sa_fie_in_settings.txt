@@ -1,0 +1,12 @@
+ALLOWED_HOSTS = ['ec2-3-93-38-95.compute-1.amazonaws.com']
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'aaa1',
+        'USER': 'django',
+        'PASSWORD': 'django',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+}
